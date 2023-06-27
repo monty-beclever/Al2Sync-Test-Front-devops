@@ -1,0 +1,79 @@
+trigger:
+- none
+
+stages:
+- stage: Build
+  displayName: 'Build Web API'
+  jobs:
+  - job: 'Build'
+    pool:
+      vmImage: 'windows-latest'
+
+    variables:
+      solution: '**/*.sln'
+      buildPlatform: 'Any CPU'
+      buildConfiguration: 'Release'
+
+    steps:
+    - task: NuGetToolInstaller@1
+      displayName: 'Install NuGet Tool'
+
+    - task: NuGetCommand@2
+      displayName: 'Restore Packages'
+      inputs:
+        restoreSolution: '$(solution)'
+          
+    - task: VSBuild@1
+      displayName: 'Start Build'
+      inputs:
+        solution: '$(solution)'
+        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+    
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Build'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop-front'
+        publishLocation: 'Container'
+
+- stage: Deploy
+  displayName: 'Deploy Web API'
+  dependsOn: Build
+  jobs:
+    - deployment: 'DeployToTest'
+      displayName: 'Deploy Web API to test environment'
+      environment:
+        name: DEV101
+        resourceType: VirtualMachine
+      variables:
+        appName: 'al2sync.front'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - download: current
+              displayName: 'Download Build'
+              artifact: drop-front
+            
+            - task: IISWebAppManagementOnMachineGroup@0
+              displayName: 'IIS Stop App Pool'
+              inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StopAppPool'
+                StartStopRecycleAppPoolName: $(appName)
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              displayName: 'IIS Deploy Web App'
+              inputs:
+                WebSiteName: 'Default Web Site'
+                VirtualApplication: $(appName)
+                Package: '$(Pipeline.Workspace)\drop-front\*.zip'
+            
+            - task: IISWebAppManagementOnMachineGroup@0
+              displayName: 'IIS Start App Pool'
+              inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StartAppPool'
+                StartStopRecycleAppPoolName: $(appName)
