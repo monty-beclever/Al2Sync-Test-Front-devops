@@ -1,0 +1,276 @@
+@import "../style/ui.scss";
+
+.simulated-table {
+  position: relative;
+  .table-container {
+    margin: 0;
+    .table-head {
+      display: flex;
+    }
+    .table-head,
+    .table-body {
+      span.col {
+        font-family: robotomedium;
+        font-size: 12px;
+        line-height: 17px;
+        color: #1f038f;
+        display: inline-block;
+        max-width: 130px;
+
+        padding-left: 5px;
+        padding-right: 5px;
+        // min-width: 120px;
+        // max-width: 120px;
+        text-align: center;
+        &:first-child {
+          text-align: left;
+          min-width: 175px;
+          max-width: 175px;
+        }
+        &.no-display {
+          display: none;
+        }
+      }
+      .desktop-bring-actions {
+        display: none;
+      }
+    }
+    .table-head {
+      padding-bottom: 25px;
+    }
+    .table-body {
+      p {
+        border-bottom: 1px solid #d9d9d9;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        position: relative;
+        span.col {
+          font-family: robotoregular;
+          font-size: 15px;
+          line-height: 20px;
+          color: #000;
+          margin: 0;
+
+          padding-top: 15px;
+          padding-bottom: 12px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          &:first-child {
+            border-right: 1px solid #d9d9d9;
+          }
+          a {
+            text-decoration: unset;
+            text-transform: uppercase;
+          }
+        }
+        &:last-child {
+          border-bottom: unset;
+        }
+        button {
+          &.desktop-bring-actions {
+            display: none;
+          }
+        }
+        app-table-action-modal {
+          display: none;
+        }
+        &.active {
+          box-shadow: 0px 2px 3px rgba(82, 77, 193, 0.25),
+            0px 3px 15px rgba(82, 77, 193, 0.19);
+          background: #f4f3ff;
+          app-table-action-modal {
+            display: block;
+            position: absolute;
+            left: 20px;
+            top: 54px;
+            z-index: 9;
+            @media screen and (min-width: 992px) {
+              left: unset;
+              top: 0px;
+              z-index: 9;
+              right: 45px;
+            }
+          }
+        }
+        &:first-child {
+          span.col {
+            padding-top: 0;
+          }
+        }
+      }
+    }
+    .table-arrows {
+      width: calc(100% - 180px);
+      position: absolute;
+      left: 178px;
+      height: 30px;
+      top: -6px;
+      button {
+        &:first-child {
+          float: left;
+          padding-right: 20px;
+        }
+        &:last-child {
+          float: right;
+          padding-left: 20px;
+        }
+        &.disabled-arrow {
+          svg {
+            path {
+              stroke: #d9d9d9;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.no-display-table {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .simulated-table {
+    position: relative;
+    .table-container {
+      .table-arrows {
+        display: none;
+      }
+      .table-head,
+      .table-body p {
+        span {
+          &.col {
+            text-align: left;
+            display: block;
+
+            &.no-display {
+              display: block;
+            }
+            &:first-child {
+              border: unset;
+            }
+          }
+          &.width60 {
+            min-width: 60px;
+            max-width: 60px;
+          }
+          &.width80 {
+            min-width: 80px;
+            max-width: 80px;
+          }
+          &.width170 {
+            min-width: 170px;
+            max-width: 170px;
+          }
+        }
+      }
+      .table-head {
+        display: flex;
+        padding-bottom: 25px;
+        .desktop-bring-actions {
+          display: inline;
+        }
+      }
+      .table-body {
+        p {
+          display: flex;
+        }
+        &.more-than-seven-body {
+          height: 390px;
+          overflow-y: scroll;
+          padding-bottom: 60px;
+          padding-right: 60px;
+          margin-right: -60px;
+          @include styleScrollBar();
+          &::-webkit-scrollbar {
+            width: 10px;
+          }
+        }
+      }
+      &.more-than-seven {
+        &:after {
+          content: "";
+          position: absolute;
+          height: 60px;
+          width: 100%;
+          bottom: 0;
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0) -63.7%,
+            #ffffff 69.22%
+          );
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+// @media screen and (min-width: 992) and (max-width: 992px) {
+//   .table-container {
+//     overflow-x: auto;
+//   }
+//   .table-body {
+//     p {
+//       span {
+//         &.col {
+//           padding-right: 15px;
+//           padding-left: 15px;
+//           min-width: 130px;
+//           &:first-child {
+//             padding-left: unset;
+//           }
+//           &:last-child {
+//             padding-right: unset;
+//           }
+//         }
+//       }
+//     }
+//   }
+//   .table-head {
+//     span {
+//       &.col {
+//         padding-right: 15px;
+//         padding-left: 15px;
+//         min-width: 130px;
+//         &:first-child {
+//           padding-left: unset;
+//         }
+//         &:last-child {
+//           padding-right: unset;
+//         }
+//       }
+//     }
+//   }
+// }
+
+@media screen and (min-width: 992px) {
+  .simulated-table {
+    .table-container {
+      .table-body {
+        p {
+          button {
+            outline: none;
+            background: none;
+            border: unset;
+            &.desktop-bring-actions {
+              display: inline;
+            }
+          }
+        }
+      }
+      .table-head,
+      .table-body p {
+        justify-content: space-between;
+      }
+    }
+  }
+}
+@include media-breakpoint-up(lg) {
+  h2 {
+    font-family: spacegroteskSemibold;
+    font-size: 50px;
+    line-height: 50px;
+  }
+}

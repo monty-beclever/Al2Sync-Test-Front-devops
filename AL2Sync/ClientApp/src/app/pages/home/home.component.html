@@ -1,0 +1,55 @@
+<div class="container dashboard-head">
+  <div class="row">
+      <div class="col-12 flex">
+        <a [routerLink]="['/']">
+          <svg class="logo" focusable="false" width="37" height="26" viewBox="0 0 37 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.7692 24.6587L12.1581 10.1178C11.7532 7.86283 9.79056 6.22168 7.49988 6.22168C5.20811 6.22168 3.24652 7.86283 2.84164 10.1178L0.228356 24.6727C0.138504 25.175 0.524985 25.6373 1.03595 25.6373H3.46411C3.86141 25.6373 4.20134 25.3526 4.27171 24.9618L4.70256 22.5628C4.74262 22.3409 4.93531 22.1796 5.16048 22.1796H9.84361C10.0688 22.1796 10.2615 22.3409 10.3015 22.5628L10.7302 24.9477C10.8006 25.3385 11.1405 25.6232 11.5367 25.6232H13.9649C14.4737 25.6232 14.8602 25.161 14.7692 24.6587ZM5.31529 19.1463L6.81138 10.8106C6.94886 10.042 8.0509 10.042 8.18838 10.8106L9.68448 19.1463C9.71587 19.3184 9.58271 19.4765 9.40842 19.4765H5.59025C5.41596 19.4765 5.2839 19.3184 5.31529 19.1463Z" fill="white"/>
+            <path d="M20.7969 21.5181L20.8012 6.9134C20.8012 6.43924 20.4169 6.05493 19.9428 6.05493H17.5601C17.0859 6.05493 16.7016 6.43924 16.7016 6.9134V24.1163C16.7016 24.9488 17.376 25.6232 18.2085 25.6232H28.2286C28.7028 25.6232 29.0871 25.2389 29.0871 24.7647V22.6375C29.0871 22.1633 28.7028 21.779 28.2286 21.779H21.0567C20.9138 21.779 20.7969 21.6621 20.7969 21.5181Z" fill="white"/>
+            <path d="M35.956 15.7199C35.9516 15.7167 35.9473 15.7145 35.9441 15.7123C35.9397 15.7102 35.9354 15.7069 35.9311 15.7048C35.851 15.656 35.7568 15.6268 35.655 15.6268H31.8433C30.7305 15.6723 29.9965 16.1454 29.5332 16.6271C29.4217 16.7429 29.2669 16.8068 29.1056 16.8068H29.1045C28.8025 16.8068 28.6498 16.442 28.862 16.2276C30.2855 14.7889 32.2569 12.7959 32.2904 12.7613C32.2959 12.7559 32.3013 12.7505 32.3056 12.7451C32.901 12.1313 33.4953 11.5153 34.0842 10.8961C34.5811 10.3732 35.0326 9.82541 35.3898 9.23109C35.8618 8.44515 36.1692 7.57803 36.1963 6.57666C36.2483 4.70168 35.7687 3.03996 34.3137 1.74198C33.0591 0.621532 31.3335 0.0510254 29.597 0.0510254C27.813 0.0510254 26.0181 0.652926 24.7093 1.88054C24.5209 2.057 24.351 2.23887 24.1962 2.42832C24.1756 2.44997 23.7686 2.89598 23.3637 3.77718C22.7423 5.13037 23.4048 6.50846 24.8728 6.75745C25.8622 6.92525 26.829 6.37856 27.1689 5.46488C27.275 5.178 27.433 4.87597 27.6647 4.58909C28.1551 4.08354 28.8447 3.80099 29.6263 3.80099C29.7454 3.80099 29.8666 3.80749 29.9889 3.82048C31.3497 3.96663 32.3554 5.22131 32.1584 6.57883C32.0425 7.37234 31.5944 7.98399 31.0607 8.54258C29.0872 10.607 27.0314 12.665 25.0579 14.7294C23.8844 15.9581 23.2489 17.4239 23.1558 19.1332C23.1461 19.3021 23.2814 19.445 23.4503 19.445H32.6206L32.8848 19.4591C34.6558 19.4591 36.0999 18.0658 36.1833 16.3164C36.1866 16.2937 36.1909 16.272 36.1941 16.2493C36.2266 16.0263 36.1259 15.8293 35.956 15.7199Z" fill="#6AD7A0"/>
+          </svg>
+        </a>
+        <div>
+          <svg class="icon-card" focusable="false" width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="showChangePasswordModal(true)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.9642 41.5091C17.4456 38.1254 22.1562 36.0441 27.3284 36.0441C32.4495 36.0441 37.1091 38.0832 40.5905 41.4048C37.1091 44.7886 32.3985 46.8699 27.2263 46.8699C22.1052 46.8699 17.4456 44.8308 13.9642 41.5091Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9.47095 35.831C8.11744 33.1373 7.30756 30.1219 7.30756 26.9001C7.30756 15.8634 16.2407 6.9303 27.2773 6.9303C38.314 6.9303 47.2471 15.8634 47.2471 26.9001C47.2471 30.1174 46.4417 33.1351 45.0793 35.8266" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M31.9842 17.7555C34.5837 20.355 34.5837 24.5697 31.9842 27.1693C29.3846 29.7688 25.1699 29.7688 22.5703 27.1693C19.9708 24.5697 19.9708 20.355 22.5703 17.7555C25.1699 15.1559 29.3846 15.1559 31.9842 17.7555" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <a href="#" (click)="logOff($event)">
+            <svg class="logout" focusable="false" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.8612 14.0158L18.2338 8.38843" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.2338 19.6432L23.8612 14.0159" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M23.8611 14.0159H11.481" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.4809 24.145H8.85485C5.95415 24.145 3.60266 21.7935 3.60266 18.8928V9.51391C3.60266 6.6132 5.95415 4.26172 8.85485 4.26172H11.4809" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-12">
+        <h2>Te damos la bienvenida <br>a Al2 Sync</h2>
+      </div>
+  </div>
+</div>
+<div class="container dashboard-wrapper" *ngIf="user && user.accessUrls && user.accessUrls.length > 0">
+  <div class="dashboard-content">
+    <div class="row">
+      <ng-container *ngFor="let section of sections">
+        <div class="col-md-6" *ngIf="user.accessUrls.includes(section.name) || user.accessUrls.includes('all')">
+          <app-card
+            [cardName]="section.name"
+            [cardIcon]="section.icon"
+            [cardTitle]="section.title"
+            [cardDescription]="section.description">
+          </app-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="container dashboard-footer">
+  <div class="row">
+    <div class="col-12">
+      <h6>{{_environment.copyright}} V.{{_environment.version}}</h6>
+    </div>
+  </div>
+</div>
+<app-password-change (closeModal)="showChangePasswordModal($event)" *ngIf="changePassword"></app-password-change>

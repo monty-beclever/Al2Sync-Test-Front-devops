@@ -1,0 +1,202 @@
+<div class="filtering">
+  <div class="modal-head">
+    <div class="right">
+      <img
+        src="./assets/icons/closeX.png"
+        alt="cerrar modal"
+        (click)="closingModal(false)"
+      />
+    </div>
+    <div class="left">Filtros</div>
+  </div>
+  <div class="custom-modal-body">
+    <div class="row" *ngFor="let filter of filters">
+      <div class="col-md-12" *ngIf="filter.type.toLowerCase() == 'radio'">
+        <div class="first-filter">
+          {{ filter.title | uppercase }}
+          <div class="radio-options">
+            <div *ngFor="let item of filter.options">
+              <input
+                id="{{ item.value }}"
+                class="radio isHidden"
+                name="radio_a"
+                type="radio"
+                (change)="setValue(item.value, $event)"
+                value="{{ item.value }}"
+              />
+              <label for="{{ item.value }}" class="label"
+                >{{ item.key | titlecase }}
+                <button (click)="deleteFilter(item.value, $event)">
+                  X
+                </button></label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="filter.type.toLowerCase() == 'date-range'">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ filter.title | uppercase }}</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate #dateRangeStart [(ngModel)]="filter.value.startDate" placeholder="primer día" />
+            <input
+              matEndDate
+              #dateRangeEnd
+              placeholder="último día"
+              [(ngModel)]="filter.value.endDate"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.3101 0.79248V4.79248"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M6.31006 0.79248V4.79248"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1.31006 7.79248H19.3101"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M17.3101 2.79248H3.31006C2.20506 2.79248 1.31006 3.68748 1.31006 4.79248V17.7925C1.31006 18.8975 2.20506 19.7925 3.31006 19.7925H17.3101C18.4151 19.7925 19.3101 18.8975 19.3101 17.7925V4.79248C19.3101 3.68748 18.4151 2.79248 17.3101 2.79248Z"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M10.3232 11.5215C10.1852 11.5215 10.0732 11.6335 10.0742 11.7715C10.0742 11.9095 10.1862 12.0215 10.3242 12.0215C10.4622 12.0215 10.5742 11.9095 10.5742 11.7715C10.5742 11.6335 10.4622 11.5215 10.3232 11.5215"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.3232 11.5215C15.1852 11.5215 15.0732 11.6335 15.0742 11.7715C15.0742 11.9095 15.1862 12.0215 15.3242 12.0215C15.4622 12.0215 15.5742 11.9095 15.5742 11.7715C15.5742 11.6335 15.4622 11.5215 15.3232 11.5215"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5.32322 15.5215C5.18522 15.5215 5.07322 15.6335 5.07422 15.7715C5.07422 15.9095 5.18622 16.0215 5.32422 16.0215C5.46222 16.0215 5.57422 15.9095 5.57422 15.7715C5.57422 15.6335 5.46222 15.5215 5.32322 15.5215"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M10.3232 15.5215C10.1852 15.5215 10.0732 15.6335 10.0742 15.7715C10.0742 15.9095 10.1862 16.0215 10.3242 16.0215C10.4622 16.0215 10.5742 15.9095 10.5742 15.7715C10.5742 15.6335 10.4622 15.5215 10.3232 15.5215"
+                  stroke="#898989"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </mat-icon>
+          </mat-datepicker-toggle>
+          <mat-date-range-picker
+            #picker
+            disabled="false"
+          ></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-12" *ngIf="filter.type.toLowerCase() == 'input'">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ filter.title | uppercase }}</mat-label>
+          <input matInput type="text" [(ngModel)]="filter.value">
+        </mat-form-field>
+      </div>
+      <div class="col-md-12" *ngIf="filter.type.toLowerCase() == 'selected'">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ filter.title | uppercase }}</mat-label>
+          <mat-select [(ngModel)]="filter.value">
+            <mat-option [value]="item.value" *ngFor="let item of filter.options">{{item.key | titlecase}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- <div class="option-filter">
+          {{ filter.title | uppercase }}
+          <select [name]="filter.title" [id]="filter.title" #filter.title (change)="setValue(filter.title, $event)">
+            <option class="disabled" disabled selected value="">Seleccionar</option>
+            <option *ngFor="let item of filter.options" [value]="item.value">{{item.key | titlecase}}</option>
+          </select>
+        </div> -->
+      </div>
+    </div>
+    <!-- <div class="first-filter">
+      {{filters[0].title | uppercase}}
+      <div class="radio-options">
+        <div *ngFor="let item of filters[0].values">
+          <input id="{{item}}" class="radio isHidden" name="radio_a" type="radio" (change)="setValue(filters[0].title, $event)" value="{{item}}">
+          <label for="{{item}}" class="label">{{item | titlecase}} <button (click)="deleteFilter(filters[0].title, $event)">X</button></label>
+        </div>
+      </div>
+    </div>
+    <div class="second-filter">
+      {{filters[1].title | uppercase}}
+      <div class="radio-options">
+        <div *ngFor="let item of filters[1].values">
+          <input id="{{item}}" class="radio isHidden" name="radio_b" type="radio" (change)="setValue(filters[1].title, $event)" value="{{item}}">
+          <label for="{{item}}" class="label">{{item | titlecase}} <button (click)="deleteFilter(filters[1].title, $event)">X</button></label>
+        </div>
+      </div>
+
+    </div>
+    <div class="option-filter" *ngIf="filters[2].title != ''">
+      {{filters[2].title | uppercase}}
+      <select [name]="filters[2].title" [id]="filters[2].title" #filters[2].title (change)="setValue(filters[2].title, $event)">
+        <option class="disabled" disabled selected value="">Seleccionar</option>
+        <option *ngFor="let item of filters[2].values" [value]="item">{{item | titlecase}}</option>
+      </select>
+    </div>
+    <div *ngIf="filters[3].title != ''">
+      {{filters[3].title | uppercase}}
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccioná un rango de fechas</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate #dateRangeStart placeholder="primer día">
+          <input matEndDate #dateRangeEnd placeholder="último día" (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>
+            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.3101 0.79248V4.79248" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.31006 0.79248V4.79248" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1.31006 7.79248H19.3101" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.3101 2.79248H3.31006C2.20506 2.79248 1.31006 3.68748 1.31006 4.79248V17.7925C1.31006 18.8975 2.20506 19.7925 3.31006 19.7925H17.3101C18.4151 19.7925 19.3101 18.8975 19.3101 17.7925V4.79248C19.3101 3.68748 18.4151 2.79248 17.3101 2.79248Z" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10.3232 11.5215C10.1852 11.5215 10.0732 11.6335 10.0742 11.7715C10.0742 11.9095 10.1862 12.0215 10.3242 12.0215C10.4622 12.0215 10.5742 11.9095 10.5742 11.7715C10.5742 11.6335 10.4622 11.5215 10.3232 11.5215" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15.3232 11.5215C15.1852 11.5215 15.0732 11.6335 15.0742 11.7715C15.0742 11.9095 15.1862 12.0215 15.3242 12.0215C15.4622 12.0215 15.5742 11.9095 15.5742 11.7715C15.5742 11.6335 15.4622 11.5215 15.3232 11.5215" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.32322 15.5215C5.18522 15.5215 5.07322 15.6335 5.07422 15.7715C5.07422 15.9095 5.18622 16.0215 5.32422 16.0215C5.46222 16.0215 5.57422 15.9095 5.57422 15.7715C5.57422 15.6335 5.46222 15.5215 5.32322 15.5215" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10.3232 15.5215C10.1852 15.5215 10.0732 15.6335 10.0742 15.7715C10.0742 15.9095 10.1862 16.0215 10.3242 16.0215C10.4622 16.0215 10.5742 15.9095 10.5742 15.7715C10.5742 15.6335 10.4622 15.5215 10.3232 15.5215" stroke="#898989" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+      </mat-form-field>
+    </div> -->
+  </div>
+  <div class="modal-button">
+    <button (click)="closingModal(true)">APLICAR</button>
+  </div>
+</div>

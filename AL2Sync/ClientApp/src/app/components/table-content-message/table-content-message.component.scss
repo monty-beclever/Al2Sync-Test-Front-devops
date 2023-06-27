@@ -1,0 +1,46 @@
+@import "../../../style/index.scss";
+
+:host {
+  .message-empty-error {
+    min-height: 98px;
+    display: flex;
+    align-items: flex-start;
+    background: $offWhite;
+    border-radius: 10px;
+    margin-top: 48px;
+    padding: 25px 25px 25px 0;
+    cursor: pointer;
+    @include media-breakpoint-up(md) {
+      align-items: center;
+    }
+    svg {
+      width: 100%;
+      max-width: 49px;
+      margin: 0 19px 0 24px;
+    }
+    .text-2 {
+      color: $darkGrey;
+    }
+ }
+
+ .message-loading-error {
+    display: flex;
+    align-items: center;
+    margin-top: 36px;
+    svg {
+      margin-right: 16px;
+      width: 100%;
+      max-width: 31px;
+    }
+ }
+
+ .message-search-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    .text-2 {
+      color: $grey;
+    }
+ }
+}

@@ -1,0 +1,212 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: spacegroteskLight;
+  src: url("../assets/fonts/SpaceGrotesk-Light.ttf") format("truetype");
+  font-weight: light;
+}
+
+@font-face {
+  font-family: spacegrotesk;
+  src: url("../assets/fonts/SpaceGrotesk-Regular.ttf") format("truetype");
+  font-weight: regular;
+}
+
+@font-face {
+  font-family: spacegroteskMedium;
+  src: url("../assets/fonts/SpaceGrotesk-Medium.ttf") format("truetype");
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: spacegroteskBold;
+  src: url("../assets/fonts/SpaceGrotesk-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: spacegroteskSemibold;
+  src: url("../assets/fonts/SpaceGrotesk-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: robotoregular;
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: robotomedium;
+  src: url("../assets/fonts/Roboto-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: robotobold;
+  src: url("../assets/fonts/Roboto-Bold.ttf") format("truetype");
+}
+
+/* Headline */
+.headline-0 {
+  font-family: spacegroteskLight, sans-serif;
+  font-size: 157px;
+  line-height: 160px;
+  letter-spacing: 0px;
+}
+.headline-1 {
+  font-family: spacegroteskLight, sans-serif;
+  font-size: 70px;
+  line-height: 70px;
+  letter-spacing: 0px;
+
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 85px;
+      list-style: 100px;
+      letter-spacing: -0.01em;
+    }
+  }
+}
+.headline-2 {
+  font-family: spacegroteskMedium, sans-serif;
+  font-size: 30px;
+  line-height: 35px;
+  letter-spacing: -0.02em;
+
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 70px;
+      list-style: 90px;
+      letter-spacing: -0.01em;
+    }
+  }
+}
+.headline-3 {
+  font-family: spacegroteskBold, sans-serif;
+  font-size: 25px;
+  line-height: 30px;
+  letter-spacing: -0.01em;
+
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 50px;
+      list-style: 100%;
+      letter-spacing: -0.01em;
+    }
+  }
+}
+.headline-3b {
+  font-family: robotobold, sans-serif;
+  font-size: 25px;
+  line-height: 30px;
+  letter-spacing: 0.01em;
+}
+
+/* Body */
+.body-1 {
+  font-family: robotobold, sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.01em;
+
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 35px;
+      list-style: 130%;
+      letter-spacing: -0.01em;
+    }
+  }
+}
+
+.body-1b {
+  font-family: robotoregular, sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.01em;
+}
+
+/* Text */
+.text-1 {
+  font-family: robotoregular, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 25px;
+      list-style: 135px;
+      letter-spacing: 0.01em;
+    }
+  }
+}
+.text-2 {
+  font-family: robotoregular, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 20px;
+      list-style: 135px;
+      letter-spacing: 0.01em;
+    }
+  }
+}
+.text-3 {
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 18px;
+      list-style: 135px;
+      letter-spacing: 0.01em;
+    }
+  }
+}
+
+/* CTA */
+.cta-text {
+  font-family: robotomedium, sans-serif;
+  font-size: 17px;
+  line-height: 35px;
+  letter-spacing: 0.07em;
+
+  @include media-breakpoint-up(lg) {
+    &--d {
+      font-size: 20px;
+      list-style: 35px;
+      letter-spacing: 0.07em;
+    }
+  }
+}
+
+/* Text Link */
+.textlink-1 {
+  font-family: robotoregular, sans-serif;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.01em;
+}
+.textlink-2 {
+  font-family: robotomedium, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-family: robotomedium, sans-serif;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.05em;
+}
+.eyebrow-input {
+  font-family: robotoregular, sans-serif;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.105em;
+}
+.eyebrow-homepage {
+  font-family: robotoregular, sans-serif;
+  font-size: 10px;
+  line-height: 17px;
+  letter-spacing: 0.05em;
+}

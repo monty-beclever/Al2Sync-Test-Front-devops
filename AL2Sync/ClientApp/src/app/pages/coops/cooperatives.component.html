@@ -1,0 +1,112 @@
+<div class="container" (window:resize)="displayWindowSize($event)">
+  <div class="row internal">
+      <div class="col-12 flex">
+          <a class="navbar-brand" [routerLink]="['/']" title="Ir atrás">
+            <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.2788 7.20593L4.09981 16.7716L13.2788 26.3372" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="1" y1="-1" x2="23.2325" y2="-1" transform="matrix(1 0 0 -1 4.46436 15.4484)" stroke="#524DC1" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+
+      </div>
+  </div>
+  <div class="row page">
+    <div class="col-1">
+      <h1>Cooperativas</h1>
+    </div>
+    <div class="col-3 col-lg-2 images">
+      <button (click)="sorting = true" title="Orden descendente por categorías">
+        <svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.17676 25.3218L11.9128 31.0579L17.6489 25.3218" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11.9134 8.75099L11.9134 31.0579" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M33.5825 14.4873L27.8464 8.75125L22.1104 14.4873" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M27.8465 31.0579L27.8465 8.75099" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </button>
+    </div>
+
+    <div class="col-12 search-container">
+      <div class="input-container">
+        <img src="./assets/icons/search.png" alt="Buscador">
+        <input type="text" placeholder="Buscá por Nombre, CUIT, Provincia, Localidad o Cuenta." (keyup)="inputSearchEvent = $event; captureInput($event)">
+      </div>
+    </div>
+
+    <div class="simulated-table" #tableId>      
+      <div class="table-container" [ngClass]="{'more-than-seven' : cooperativas.length > 7}">
+        <div class="table-arrows">
+          <button type="button" (click)="showItem(-1)" [ngClass]="{'disabled-arrow' : sharedService.initialValue == 1}" aria-label="Desplazarse a la izquierda">
+            <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.0127 1.23853L1.29562 8.23853L8.0127 15.2385" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button type="button" (click)="showItem(1)" [ngClass]="{'disabled-arrow' : sharedService.initialValue == sharedService.lastValue}" aria-label="Desplazarse a la derecha">
+            <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.18604 15.2385L7.90311 8.23853L1.18604 1.23853" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="table-head">
+          <span class="col">{{coopsHeads[0]}}</span>
+          <span class="col">{{coopsHeads[1]}}</span>
+          <span class="col" [ngClass]="{'no-display' : !sharedService.width540, 'width60' : sharedService.isTablet}">{{coopsHeads[2]}}</span>
+          <!-- <span class="col" [ngClass]="sharedService.isTablet? 'width80':'no-display'">{{coopsHeads[3]}}</span> -->
+          <span class="col" [ngClass]="sharedService.isTablet? '':'no-display'">{{coopsHeads[4]}}</span>
+          <span class="col no-display">{{coopsHeads[5]}}</span>
+          <span class="col no-display">{{coopsHeads[6]}}</span>
+          <span class="col no-display">{{coopsHeads[7]}}</span>
+          <span class="col no-display" [ngClass]="sharedService.isTablet? 'width170':''">{{coopsHeads[8]}}</span>
+          <!-- <span class="col no-display">{{coopsHeads[9]}}</span> -->
+          <!-- <span class="col no-display">{{coopsHeads[10]}}</span> -->
+          <span class="desktop-bring-actions" style="min-width: 17px; max-width:17px;"></span>
+        </div>
+        <div class="table-body" *ngIf="cooperativas.length > 0" [ngClass]="{'more-than-seven-body' : cooperativas.length > 7}">
+          <p *ngFor="let coop of cooperativas; let i=index" [ngClass]="{'active' : selectedItem === i}" (click)="selectIndex(i)">
+              <span class="col" title="{{coop.nombre}}">{{ coop.nombre | uppercase }}</span>
+              <span class="col">{{ coop.cuit }}</span>
+              <span class="col" *ngIf="coop.activo === 1" [ngClass]="{'no-display' : !sharedService.width540, 'width60' : sharedService.isTablet}">
+                <img src="./assets/icons/active.png" alt="Cooperativa activa">
+              </span>
+              <span class="col" *ngIf="coop.activo === 0" [ngClass]="{'no-display' : !sharedService.width540, 'width60' : sharedService.isTablet}">
+                <img src="./assets/icons/inactive.png" alt="Cooperativa inactiva">
+              </span>
+              <!-- <span class="col" [ngClass]="sharedService.isTablet? 'width80':'no-display'">
+                <a href="{{coop[listOfKeys[3]]}}" target="_blank">Link</a>
+              </span> -->
+              <span class="col" [ngClass]="sharedService.isTablet? '':'no-display'">{{ coop.cuentaCorriente | uppercase }}</span>
+              <span class="col no-display">{{ coop.provincia | titlecase }}</span>
+              <span class="col no-display">{{ coop.localidad | titlecase }} local </span>
+              <span class="col no-display">{{ coop.telefono }}</span>
+              <span class="col no-display" *ngIf="!sharedService.isTablet">{{ ((coop.mail.length > 15) ? (coop.mail | slice:0:12) + '...': (coop.mail)) | lowercase}}</span>
+              <span class="col no-display" *ngIf="sharedService.isTablet" [ngClass]="sharedService.isTablet? 'width170':''">{{coop.mail | lowercase}}</span>
+              <!-- <span class="col no-display">{{coop[listOfKeys[9]] | uppercase}}</span> -->
+              <!-- <span class="col no-display">{{coop[listOfKeys[10]]}}</span> -->
+              <button class="desktop-bring-actions" (click)="selectedItem = i; sharedService.selectedItem = i; sharedService.dataForEdit = coop">
+                <img src="./assets/icons/ellipsys.png" alt="">
+              </button>
+              <app-table-action-modal
+              [tableRow]="coop"
+              [tableName]="'cooperativas'"
+              [tableRowIndex]="i">
+              </app-table-action-modal>
+          </p>
+        </div>
+        <app-table-content-message [searchTextEvent]="inputSearchEvent" [data]="cooperativas"></app-table-content-message>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-button" *ngIf="user.accessUrls.includes('all')">
+    <button (click)="addNew('cooperativas/new')">
+      AGREGAR NUEVO
+    </button>
+  </div>
+
+</div>
+
+
+<div class="cover" *ngIf="sorting" (click)="sorting = false;">
+</div>
+<app-sorting *ngIf="sorting"
+[tableHeads]="coopsHeadForSorting"
+></app-sorting>

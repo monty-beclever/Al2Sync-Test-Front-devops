@@ -1,0 +1,44 @@
+<div class="modal-backdrop" (click)="resetFormState()"></div>
+<div class="file-wrapper">
+  <div class="file-container">
+    <button class="close-btn" (click)="resetFormState()">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.45166 9.48926L27.835 27.8726" stroke="#D9D9D9" stroke-width="2.8782" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.45166 27.8726L27.835 9.48921" stroke="#D9D9D9" stroke-width="2.8782" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="title body-1">Importar</div>
+    <app-file inputFileName="socios-input"
+          (file)="getFile($event)"
+          [reset]="resetFileInput"
+          [progress]="fileInputProgress"
+          [status]="fileInputStatus"
+          [csvAllowed]="true" *ngIf="!result"></app-file>
+    <div *ngIf="result && result.errors && result.errors.length > 0">
+      <h4>Ocurrió un error al importar los siguientes socios</h4>
+      <div class="simulated-table" #tableId>
+        <div class="table-container">
+          <div class="table-head">
+            <span class="col">CUIT</span>
+            <span class="col">Apellido</span>
+            <span class="col">Nombre</span>
+          </div>
+          <div class="table-body">
+            <p *ngFor="let partner of result.errors; let i=index">
+              <span class="col" title="{{ partner.cuit }}">{{ partner.cuit }}</span>
+              <span class="col">{{ partner.apellido | titlecase}}</span>
+              <span class="col">{{ partner.nombre | titlecase}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="message && message.length > 0" class="errorContainer">
+      <h3>
+        {{message}}
+      </h3>
+    </div>
+    <button class="save-btn cta cta-primary cta-text" [disabled]="disable || !file ? true : false" (click)="uploadFile()">guardar</button>
+    <button class="cta cta-secondary cta-text" [disabled]="disable" (click)="resetFormState()">Cancelar</button>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+@import "../../../style/index.scss";
+
+.dashboard-head {
+  padding-top: 28px;
+  & > .row {
+    padding-bottom: 25px;
+    @include media-breakpoint-up(lg) {
+      padding-bottom: 58px;
+    }
+  }
+  h2 {
+    font-family: spacegroteskSemibold;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin-top: 33px;
+    color: $white;
+
+    @include media-breakpoint-up(md) {
+      br {
+        display: none;
+      }
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 50px;
+      line-height: 50px;
+    }
+  }
+}
+
+
+.dashboard-footer {
+  padding-top: 28px;
+  & > .row {
+    padding-bottom: 0px;
+    @include media-breakpoint-up(lg) {
+      padding-bottom: 0px;
+    }
+  }
+  h6 {
+    font-family: spacegroteskSemibold;
+    // font-size: 25px;
+    // line-height: 30px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    // margin-top: 33px;
+    color: $white;
+
+    @include media-breakpoint-up(md) {
+      br {
+        display: none;
+      }
+    }
+    @include media-breakpoint-up(lg) {
+      // font-size: 50px;
+      // line-height: 50px;
+    }
+  }
+}
+
+.container.dashboard-wrapper {
+  background-color: $deepBlue;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dashboard-content {
+  background-color: $white;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  margin: 0 auto;
+  padding: 30px 36px;
+  @include media-breakpoint-up(lg) {
+    padding: 83px 181px;
+  }
+  .row {
+    margin: 0 auto;
+
+    & > div {
+      @include media-breakpoint-down(md) {
+        padding: 0;
+      }
+      &:not(:last-child) {
+        margin-bottom: 19px;
+        @include media-breakpoint-up(lg) {
+          margin-bottom: 37px;
+        }
+      }
+    }
+  }
+}

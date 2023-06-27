@@ -1,0 +1,38 @@
+<div class="actions-container">
+  <div class="head">
+    <button (click)="removeActive()">
+      <img src="./assets/icons/closeX.png" alt="">
+    </button>
+  </div>
+  <div class="body">
+    <button (click)="confirmDeletion = true" *ngIf="canDelete">
+      <img src="./assets/icons/delete.png" alt="">
+    </button>
+    <button (click)="goToEdit()">
+      <img src="./assets/icons/edit.png" alt="">
+    </button>
+  </div>
+</div>
+
+<div class="cover" *ngIf="confirmDeletion" (click)="confirmDeletion = false">
+
+</div>
+<div class="delete-modal" *ngIf="confirmDeletion">
+  <div class="modal-head">
+    <div class="right">
+      <img src="./assets/icons/closeX.png" alt="cerrar modal" (click)="confirmDeletion = false">
+    </div>
+  </div>
+  <div class="custom-modal-body">
+    <div class="modal-title">
+      Eliminar {{name}}
+    </div>
+    <div class="modal-explanation">
+      Por favor considerá que esta acción no se podrá deshacer
+    </div>
+  </div>
+  <div class="modal-button">
+    <button (click)="deleteItem()">CONFIRMAR</button>
+    <button (click)="confirmDeletion = false">CANCELAR</button>
+  </div>
+</div>

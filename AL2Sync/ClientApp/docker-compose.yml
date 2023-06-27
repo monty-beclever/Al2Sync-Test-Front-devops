@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+    frontEnd:
+        image: al2sync
+        environment:
+            - PRODUCTION=true
+            # Ruta donde se encuentra la api
+            - API_URL=https://localhost:5001/
+            # Texto de copyright que se muestra en el footer
+            - COPYRIGHT=Al2 Sync ©2021-2022
+            # Version del sitio que se muestra en el footer
+            - VERSION=1.0.7.1
+        ports:
+            - "8200:80"

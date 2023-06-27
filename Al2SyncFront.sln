@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AL2Sync", "AL2Sync\AL2Sync.csproj", "{ABF18426-E713-4344-BCEA-3891AC28816D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABF18426-E713-4344-BCEA-3891AC28816D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF18426-E713-4344-BCEA-3891AC28816D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF18426-E713-4344-BCEA-3891AC28816D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF18426-E713-4344-BCEA-3891AC28816D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CB6D21F-1A6D-4DCE-9622-3A3BB047B6A1}
+	EndGlobalSection
+EndGlobal

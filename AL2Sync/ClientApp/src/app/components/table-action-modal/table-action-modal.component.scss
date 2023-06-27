@@ -1,0 +1,180 @@
+.actions-container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  max-width: 125px;
+  width: 125px;
+  height: 55px;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px 0 #524dc1;
+  &:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin: -5px 0 0 15px;
+    border-bottom: 5px solid #fff;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+
+  .head,
+  .body {
+    button {
+      border: unset;
+      outline: none;
+      background: unset;
+    }
+  }
+
+  .head {
+    align-self: flex-end;
+    button {
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  .body {
+    margin-top: -10px;
+    button {
+      padding: 0 15px;
+      img {
+        width: 19px;
+        height: 19px;
+      }
+    }
+  }
+}
+
+.delete-modal {
+  width: 288px;
+  height: 331px;
+  background: #fff;
+  z-index: 99;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2.8782px 4.3173px rgba(82, 77, 193, 0.25),
+    0px 4.3173px 21.5865px rgba(82, 77, 193, 0.19);
+  border-radius: 15px;
+  padding: 25px 21px 35px 23.5px;
+  .modal-head {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 27px;
+    .right {
+      align-self: flex-end;
+    }
+  }
+  .custom-modal-body {
+    .modal-title {
+      font-family: roboto;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 25px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: #000000;
+      padding-bottom: 15px;
+    }
+    .modal-explanation {
+      font-family: roboto;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 20px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: #424242;
+      max-width: 231px;
+      margin: 0 auto;
+      padding-bottom: 34.5px;
+    }
+  }
+  .modal-button {
+    max-width: 236px;
+    margin: 0 auto;
+    button {
+      height: 48px;
+      border: 1px solid #524dc1;
+      border-radius: 50px;
+      font-family: robotoregular;
+      font-size: 17px;
+      line-height: 35px;
+      color: #524dc1;
+      width: 100%;
+      &:first-child {
+        background: #524dc1;
+        margin-bottom: 10px;
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .actions-container {
+    width: 94.5px;
+    height: 94.5px;
+
+    &:before {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      margin: 10px 0px 0px 94px;
+      border-bottom: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-left: 5px solid #fff;
+      border-top: 5px solid transparent;
+    }
+
+    .head {
+      z-index: 99;
+      button {
+        padding: 5px 10px;
+        img {
+          width: 19px;
+          height: 19px;
+        }
+      }
+    }
+    .body {
+      margin-top: -47px;
+      button {
+        padding: 10px 16px;
+        img {
+          width: 19px;
+          height: 19px;
+        }
+        &:first-child {
+          padding-top: 19px;
+        }
+      }
+    }
+  }
+  .delete-modal {
+    width: 414.5px;
+    height: 371.5px;
+    border-radius: 21.5px;
+    .custom-modal-body {
+      .modal-title {
+        font-size: 29px;
+        line-height: 36px;
+        padding-bottom: 21.5px;
+      }
+      .modal-explanation {
+        font-size: 21.5px;
+        line-height: 29px;
+        max-width: 315px;
+        padding-bottom: 47px;
+      }
+    }
+    .modal-button {
+      max-width: 315px;
+    }
+  }
+}

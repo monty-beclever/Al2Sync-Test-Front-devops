@@ -1,0 +1,21 @@
+<div class="sorting">
+  <div class="modal-head">
+    <div class="right">
+      <img src="./assets/icons/closeX.png" alt="cerrar modal" (click)="closingModal(false)">
+    </div>
+    <div class="left">Ordenar por </div>
+  </div>
+  <div class="custom-modal-body">
+    <ng-container  *ngFor="let item of tableHeads; let i = index">
+      <div class="radio-button" *ngIf="item != ''">
+        <input id="{{item}}" class="radio isHidden" name="radio_a" type="radio" (change)="setValue($event)" value="{{i}}">
+        <img class="hidden-check" src="./assets/icons/check.png" alt="{{item}} descendente seleccionado">
+        <label for="{{item}}" class="label">{{item | titlecase}}</label>
+      </div>
+    </ng-container>
+
+  </div>
+  <div class="modal-button">
+    <button (click)="closingModal(true)">APLICAR</button>
+  </div>
+</div>

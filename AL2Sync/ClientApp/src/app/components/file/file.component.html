@@ -1,0 +1,47 @@
+<div *ngFor="let contract of files" class="files">
+  <hr>
+  <h6 (click)="openFile(contract)">{{contract.docNombre}}</h6>
+  <p *ngIf="contract.fechaAlta">Fecha de Alta: {{contract.fechaAlta | date: 'dd/MM/yyyy'}}</p>
+</div>
+<label [attr.for]="inputFileName" [ngClass]="setLabelClasses()" (dragover)="dragOn($event)" (dragenter)="dragOn($event)" (dragleave)="dragOff($event)" (drop)="drop($event)">
+  <input type="file" [attr.name]="inputFileName" [attr.id]="inputFileName" #fileEl (change)="fileChange($event)">
+  <ng-container [ngSwitch]="fileStatus">
+    <ng-container *ngSwitchCase="'error'">
+      <svg [class.svg--default]="fileStatus !== 'uploading'" width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8685 1.40015V1.40015C28.4153 1.40015 36.153 9.13783 36.153 18.6846V18.6846C36.153 28.2314 28.4153 35.9691 18.8685 35.9691V35.9691C9.32167 35.9691 1.58398 28.2314 1.58398 18.6846V18.6846C1.58398 9.13783 9.32167 1.40015 18.8685 1.40015Z" stroke="#ED726A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.8685 19.645V10.0425" stroke="#ED726A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.8665 26.3666C18.6015 26.3666 18.3864 26.5817 18.3883 26.8467C18.3883 27.1118 18.6034 27.3268 18.8685 27.3268C19.1335 27.3268 19.3486 27.1118 19.3486 26.8467C19.3486 26.5817 19.1335 26.3666 18.8665 26.3666" stroke="#ED726A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <svg [class.svg--default]="fileStatus !== 'uploading'" width="33" height="36" viewBox="0 0 33 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.67969 19.6875H24.013" stroke="#524DC1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8.67969 27.1875H24.013" stroke="#524DC1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.84652 0.9375H22.4262C23.442 0.9375 24.4176 1.33313 25.1363 2.03625L30.5567 7.33875C31.2754 8.04188 31.6798 8.99625 31.6798 9.99V30.9375C31.6798 33.0094 29.9644 34.6875 27.8465 34.6875H4.84652C2.7286 34.6875 1.01318 33.0094 1.01318 30.9375V4.6875C1.01318 2.61562 2.7286 0.9375 4.84652 0.9375Z" stroke="#524DC1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M31.68 10.3125H24.0133C22.9553 10.3125 22.0967 9.4725 22.0967 8.4375V0.9375" stroke="#524DC1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8.67969 12.1875H14.4297" stroke="#524DC1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </ng-container>
+  </ng-container>
+
+  <ng-container [ngSwitch]="fileStatus">
+    <ng-container *ngSwitchCase="'uploading'">
+      <span class="progress-text cta-text">{{progress}}%</span>
+    </ng-container>
+    <ng-container *ngSwitchCase="'error'">
+      <span class="text-2 text-2--error">El archivo no se cargó correctamente</span>
+      <span class="textlink-2 m-t">intentar nuevamente</span>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <ng-container *ngIf="!selectedFile">
+        <span class="textlink-2 m-b">seleccionar archivo</span>
+        <span class="text-2" *ngIf="!csvAllowed">PDF, PNG o JPG</span>
+        <span class="text-2" *ngIf="csvAllowed">PDF, CSV, PNG o JPG</span>
+      </ng-container>
+      <ng-container *ngIf="selectedFile">
+        <span class="text-2">{{selectedFile.name}}</span>
+        <span class="textlink-2 m-t">elegir otro archivo</span>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</label>

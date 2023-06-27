@@ -1,0 +1,61 @@
+@import '../../../style/index.scss';
+
+.file-wrapper {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 386px;
+  border-radius: 21.59px;
+  padding: 60.5px 0 35px;
+  z-index: 2;
+  background-color: $white;
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    max-width: 288px;
+    padding: 60.5px 26px 35px;
+  }
+}
+.file-container {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3;
+
+  .title {
+    text-align: center;
+    margin-bottom: 29.5px;
+    @include media-breakpoint-up(md) {
+      text-align: left;
+      font-size: 28.78px;
+      line-height: 35.98px;
+    }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 26px;
+    margin-right: 30px;
+  }
+
+  .save-btn{
+    margin-bottom: 11px;
+  }
+}
+
+.errorContainer {
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    text-align: center;
+    color: $errorRed;
+  }
+}

@@ -1,0 +1,64 @@
+<div [ngClass]="setClasses()">
+  <div class="row head">
+    <div class="col-6">
+      <a [routerLink]="['/']" (click)="backToPrevious($event)">
+        <ng-container *ngIf="type === 'auth'">
+          <svg class="logo" focusable="false" width="37" height="26" viewBox="0 0 37 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.2692 24.6587L12.6581 10.1178C12.2532 7.86283 10.2906 6.22168 7.99988 6.22168C5.70811 6.22168 3.74652 7.86283 3.34164 10.1178L0.728356 24.6727C0.638504 25.175 1.02498 25.6373 1.53595 25.6373H3.96411C4.36141 25.6373 4.70134 25.3526 4.77171 24.9618L5.20256 22.5628C5.24262 22.3409 5.43531 22.1796 5.66048 22.1796H10.3436C10.5688 22.1796 10.7615 22.3409 10.8015 22.5628L11.2302 24.9477C11.3006 25.3385 11.6405 25.6232 12.0367 25.6232H14.4649C14.9737 25.6232 15.3602 25.161 15.2692 24.6587ZM5.81529 19.1463L7.31138 10.8106C7.44886 10.042 8.5509 10.042 8.68838 10.8106L10.1845 19.1463C10.2159 19.3184 10.0827 19.4765 9.90842 19.4765H6.09025C5.91596 19.4765 5.7839 19.3184 5.81529 19.1463Z" fill="#1F038F"/>
+            <path d="M21.2969 21.5181L21.3012 6.9134C21.3012 6.43924 20.9169 6.05493 20.4428 6.05493H18.0601C17.5859 6.05493 17.2016 6.43924 17.2016 6.9134V24.1163C17.2016 24.9488 17.876 25.6232 18.7085 25.6232H28.7286C29.2028 25.6232 29.5871 25.2389 29.5871 24.7647V22.6375C29.5871 22.1633 29.2028 21.779 28.7286 21.779H21.5567C21.4138 21.779 21.2969 21.6621 21.2969 21.5181Z" fill="#1F038F"/>
+            <path d="M36.456 15.7199C36.4516 15.7167 36.4473 15.7145 36.4441 15.7123C36.4397 15.7102 36.4354 15.7069 36.4311 15.7048C36.351 15.656 36.2568 15.6268 36.155 15.6268H32.3433C31.2305 15.6723 30.4965 16.1454 30.0332 16.6271C29.9217 16.7429 29.7669 16.8068 29.6056 16.8068H29.6045C29.3025 16.8068 29.1498 16.442 29.362 16.2276C30.7855 14.7889 32.7569 12.7959 32.7904 12.7613C32.7959 12.7559 32.8013 12.7505 32.8056 12.7451C33.401 12.1313 33.9953 11.5153 34.5842 10.8961C35.0811 10.3732 35.5326 9.82541 35.8898 9.23109C36.3618 8.44515 36.6692 7.57803 36.6963 6.57666C36.7483 4.70168 36.2687 3.03996 34.8137 1.74198C33.5591 0.621532 31.8335 0.0510254 30.097 0.0510254C28.313 0.0510254 26.5181 0.652926 25.2093 1.88054C25.0209 2.057 24.851 2.23887 24.6962 2.42832C24.6756 2.44997 24.2686 2.89598 23.8637 3.77718C23.2423 5.13037 23.9048 6.50846 25.3728 6.75745C26.3622 6.92525 27.329 6.37856 27.6689 5.46488C27.775 5.178 27.933 4.87597 28.1647 4.58909C28.6551 4.08354 29.3447 3.80099 30.1263 3.80099C30.2454 3.80099 30.3666 3.80749 30.4889 3.82048C31.8497 3.96663 32.8554 5.22131 32.6584 6.57883C32.5425 7.37234 32.0944 7.98399 31.5607 8.54258C29.5872 10.607 27.5314 12.665 25.5579 14.7294C24.3844 15.9581 23.7489 17.4239 23.6558 19.1332C23.6461 19.3021 23.7814 19.445 23.9503 19.445H33.1206L33.3848 19.4591C35.1558 19.4591 36.5999 18.0658 36.6833 16.3164C36.6866 16.2937 36.6909 16.272 36.6941 16.2493C36.7266 16.0263 36.6259 15.8293 36.456 15.7199Z" fill="#6AD7A0"/>
+          </svg>
+        </ng-container>
+        <ng-container *ngIf="type === 'error'">
+          <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.2788 7.20605L4.09981 16.7717L13.2788 26.3373" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="1" y1="-1" x2="23.2325" y2="-1" transform="matrix(1 0 0 -1 4.4646 15.4487)" stroke="#524DC1" stroke-width="2" stroke-linecap="round"/>
+          </svg> 
+        </ng-container>
+      </a>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <button (click)="closeBtn()">
+        <svg focusable="false" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.71753 6.4043L19.4917 19.1785" stroke="#898989" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6.71753 19.1785L19.4917 6.40427" stroke="#898989" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="col-12 d-flex justify-content-center warning-icon">
+      <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9666 1.72656V1.72656C25.6658 1.72656 32.7166 8.77731 32.7166 17.4766V17.4766C32.7166 26.1758 25.6658 33.2266 16.9666 33.2266V33.2266C8.2673 33.2266 1.21655 26.1758 1.21655 17.4766V17.4766C1.21655 8.77731 8.2673 1.72656 16.9666 1.72656Z" stroke="#ED726A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.9666 18.3516V9.60156" stroke="#ED726A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.9648 24.4766C16.7233 24.4766 16.5273 24.6726 16.5291 24.9141C16.5291 25.1556 16.7251 25.3516 16.9666 25.3516C17.2081 25.3516 17.4041 25.1556 17.4041 24.9141C17.4041 24.6726 17.2081 24.4766 16.9648 24.4766" stroke="#ED726A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>        
+    </div>
+  </div>
+  <div class="row action">
+    <div class="col-12">
+      <h1 class="text-center headline-3">
+        <ng-container *ngIf="type === 'auth'">
+          Hubo un inconveniente al iniciar sesion
+        </ng-container>
+        <ng-container *ngIf="type === 'error'">
+          Tuvimos un inconveniente
+        </ng-container>
+      </h1>
+      <p class="text-center text-1">
+        <ng-container *ngIf="type === 'auth'">
+          Por favor, intenta nuevamente en unos minutos.
+        </ng-container>
+        <ng-container *ngIf="type === 'error'">
+          Parece que la carga está demorando más de lo esperado. Por favor intentá nuevamente en unos minutos.
+        </ng-container>
+      </p>
+    </div>
+    <div class="col-12">
+      <img class="error-profile" src="assets/icons/error-profile.jpg" alt="error">
+    </div>
+    <div class="col-12 d-flex justify-content-md-center">
+      <button class="cta cta-primary cta-text" (click)="reEnterUserInput()">Reintentar</button>
+      <button *ngIf="type === 'error'" class="cta cta-secondary cta-text" (click)="backToHomePage()">volver a inicio</button>
+    </div>
+  </div>
+</div>
+

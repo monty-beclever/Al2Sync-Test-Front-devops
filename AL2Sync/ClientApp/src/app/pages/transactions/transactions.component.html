@@ -1,0 +1,103 @@
+<div class="container" (window:resize)="displayWindowSize($event)">
+  <div class="row internal">
+      <div class="col-12 flex">
+        <a class="navbar-brand" [routerLink]="['/']" title="Ir atrás">
+          <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.2788 7.20593L4.09981 16.7716L13.2788 26.3372" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="1" y1="-1" x2="23.2325" y2="-1" transform="matrix(1 0 0 -1 4.46436 15.4484)" stroke="#524DC1" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+      </div>
+  </div>
+  <div class="row page">
+    <div class="col-1">
+      <h1>Transacciones</h1>
+    </div>
+    <div class="col-3 col-lg-2 images">
+      <button (click)="setFilters()" title="Filtro">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25.0767 6.96587H29.2561" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.1792 6.96587H19.504" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.9312 16.7178H29.2559" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.1792 16.7178H8.35868" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M25.0767 26.4701H29.2561" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4.1792 26.4701H19.504" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24.2605 4.99554C25.3486 6.08367 25.3486 7.84787 24.2605 8.936C23.1723 10.0241 21.4081 10.0241 20.32 8.936C19.2319 7.84787 19.2319 6.08367 20.32 4.99554C21.4081 3.90741 23.1723 3.90741 24.2605 4.99554" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.1154 14.7476C14.2036 15.8357 14.2036 17.5999 13.1154 18.6881C12.0273 19.7762 10.2631 19.7762 9.17498 18.6881C8.08686 17.5999 8.08686 15.8357 9.17498 14.7476C10.2631 13.6595 12.0273 13.6595 13.1154 14.7476" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24.2605 24.4998C25.3486 25.5879 25.3486 27.3521 24.2605 28.4403C23.1723 29.5284 21.4081 29.5284 20.32 28.4403C19.2319 27.3521 19.2319 25.5879 20.32 24.4998C21.4081 23.4117 23.1723 23.4117 24.2605 24.4998" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg></button>
+      <button (click)="sorting = true" title="Orden descendente por categorías">
+        <svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.17676 25.3218L11.9128 31.0579L17.6489 25.3218" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11.9134 8.75099L11.9134 31.0579" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M33.5825 14.4873L27.8464 8.75125L22.1104 14.4873" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M27.8465 31.0579L27.8465 8.75099" stroke="#524DC1" stroke-width="1.99957" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </button>
+    </div>
+
+    <div class="col-12 search-container">
+      <div class="input-container">
+        <img src="../../../../assets/icons/search.png" alt="Buscador">
+        <input type="text" placeholder="Buscá por Socio, CUIT Débito, CUIT Crédito o ID." (keyup)="inputSearchEvent = $event; captureInput($event)">
+      </div>
+    </div>
+
+
+    <div class="simulated-table" #tableId>
+      <div class="table-container" [ngClass]="{'more-than-seven' : transactionsData?.length > 7}">
+        <div class="table-arrows">
+          <button type="button" (click)="showItem(-1)" [ngClass]="{'disabled-arrow' : sharedService.initialValue == 1}" aria-label="Desplazarse a la izquierda">
+            <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.0127 1.23853L1.29562 8.23853L8.0127 15.2385" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button type="button" (click)="showItem(1)" [ngClass]="{'disabled-arrow' : sharedService.initialValue == sharedService.lastValue}" aria-label="Desplazarse a la derecha">
+            <svg width="9" height="17" viewBox="0 0 9 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.18604 15.2385L7.90311 8.23853L1.18604 1.23853" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="table-head">
+          <span class="col">{{transactionsHeads[0]}}</span>
+          <span class="col">{{transactionsHeads[1]}}</span>
+          <span class="col" [ngClass]="sharedService.width540? '':'no-display'">{{transactionsHeads[2]}}</span>
+          <span class="col" [ngClass]="sharedService.isTablet? '':'no-display'">{{transactionsHeads[3]}}</span>
+          <span class="col" [ngClass]="sharedService.isTablet? '':'no-display'">{{transactionsHeads[4]}}</span>
+          <span class="col no-display">{{transactionsHeads[5]}}</span>
+          <span class="col no-display">{{transactionsHeads[6]}}</span>
+          <span class="col no-display">{{transactionsHeads[7]}}</span>
+          <span class="col no-display">{{transactionsHeads[8]}}</span>
+        </div>
+        <div class="table-body" [ngClass]="{'more-than-seven-body' : transactionsData?.length > 7}">
+          <p *ngFor="let transaction of transactionsData">
+              <span class="col" title="{{transaction.socio}}">{{transaction.socio | uppercase}}</span>
+              <span class="col">{{transaction.cuitDebito}}</span>
+              <span class="col" [ngClass]="width540? '':'no-display'">{{transaction.cuitCredito}}</span>
+              <span class="col" [ngClass]="sharedService.isTablet? '':'no-display'">{{transaction.trnid}}</span>
+              <span class="col" [ngClass]="sharedService.isTablet? '':'no-display'">{{transaction.fecha | date: 'dd/MM/yyyy'}}</span>
+              <span class="col no-display">{{transaction.importe | currency}}</span>
+              <span class="col no-display">{{transaction.tipo}}</span>
+              <span class="col no-display" title="{{transaction.detalle}}">{{transaction.detalle | titlecase}}</span>
+              <span class="col no-display" title="{{transaction.status}}">{{transaction.status}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <app-table-content-message [searchTextEvent]="inputSearchEvent" [data]="transactionsData" [exclude]="['empty-error']"></app-table-content-message>
+  </div>
+
+</div>
+
+
+
+
+
+<div class="cover" *ngIf="sorting || filtering" (click)="sorting = false; filtering = false">
+</div>
+<app-sorting *ngIf="sorting"
+[tableHeads]="transactionsHeadsForSorting"
+></app-sorting>
+
+<app-filter *ngIf="filtering"></app-filter>

@@ -1,0 +1,90 @@
+@import "../../../style/index.scss";
+
+.section {
+  display: block;
+  text-decoration: none;
+  margin-top: unset;
+  box-shadow: 0px 2px 3px rgba(82, 77, 193, 0.25), 0px 3px 15px rgba(82, 77, 193, 0.19);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px 5px 20px 5px;
+  padding: 0 0 0 26px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 10px 0 0 55px
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $green;
+
+    .icon-container {
+      color: $black;
+    }
+
+    svg path {
+      fill: $black;
+    }
+  }
+
+  .icon-container {
+    display: inline-block;
+    padding-top: 30px;
+    padding-right: 17.5px;
+    width: 53px;
+    color: $greenOptical;
+
+    @include media-breakpoint-up(lg) {
+      padding-right: 48px;
+      padding-top: 30px;
+      width: 104px;
+    }
+  }
+
+  .section-texts {
+    max-width: 163px;
+    height: 180px;
+
+    display: inline-flex;
+    flex-direction: column;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 250px;
+    }
+
+    h3 {
+      font-family: robotoregular;
+      font-size: 20px;
+      line-height: 25px;
+      letter-spacing: 0.01em;
+      color: #000;
+
+      @include media-breakpoint-up(lg) {
+        font-size: 33px;
+        line-height: 45.92px;
+      }
+    }
+
+    p {
+      font-family: robotoregular;
+      font-size: 14px;
+      line-height: 20px;
+      color: $darkGrey;
+      letter-spacing: 0.01em;
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 24px;
+      }
+    }
+
+    svg {
+      margin-bottom: 34px;
+      display: none;
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 34px;
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<div *ngIf="isDropdownActive" class="search-dropdown-container">
+  <ul class="search-dropdown" (click)="selectText($event)">
+    <li class="text-2" *ngFor="let item of filteredSearchList">{{item}}</li>
+  </ul>
+</div>

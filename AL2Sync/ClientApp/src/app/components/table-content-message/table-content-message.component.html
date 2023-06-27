@@ -1,0 +1,30 @@
+<ng-container *ngIf="data.length < 1">
+  <ng-container *ngIf="!omit('empty-error') && dataService.data && ((searchTextEvent && !searchTextEvent.target.value) || !searchTextEvent)">
+    <div class="message-empty-error">
+      <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25.9214 18.9182H10.5796" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.2505 26.5892V11.2473" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.0529 31.1157V31.1157C-0.68424 24.3786 -0.68424 13.4577 6.0529 6.72054V6.72054C12.79 -0.0165959 23.7109 -0.0165959 30.4481 6.72054V6.72054C37.1852 13.4577 37.1852 24.3786 30.4481 31.1157V31.1157C23.7109 37.8529 12.79 37.8529 6.0529 31.1157Z" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>     
+      <span class="text-2">Aún no hay datos para mostrar, agregá los datos de la cooperativa para poder visualizarlos.</span>                  
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!omit('loading-error') && !dataService.data">
+    <div class="message-loading-error">
+      <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.51377 11.1188H2V4.60498" stroke="#524DC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.75928 31.3965C11.3226 32.3015 13.0544 32.9424 14.8991 33.2655" stroke="#524DC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.83716 23.1445C3.4729 24.8885 4.39352 26.4917 5.56426 27.8866" stroke="#524DC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.3671 33.2655C22.2118 32.9424 23.9418 32.3015 25.5069 31.3965" stroke="#524DC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M29.7019 27.8866C30.8726 26.4917 31.7933 24.8885 32.429 23.1445" stroke="#524DC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M33.2659 17.6331C33.2659 8.9984 26.2675 2 17.6329 2C11.3275 2 5.90633 5.74151 3.43457 11.1193" stroke="#524DC1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      <span class="text-2">Aún no hay datos para mostrar, agregá los datos de la cooperativa para poder visualizarlos.</span>                  
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!omit('search-error') && dataService.data && searchTextEvent && searchTextEvent.target.value">
+    <div class="message-search-error">
+      <span class="text-2">No hay resultados</span>                  
+    </div>
+  </ng-container>
+</ng-container>

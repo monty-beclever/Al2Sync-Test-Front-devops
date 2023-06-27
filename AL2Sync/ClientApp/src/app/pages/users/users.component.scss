@@ -1,0 +1,15 @@
+.simulated-table {
+  .table-container {
+    .table-head,
+    .table-body {
+      span.col {
+        @media screen and (min-width: 992px) {
+          &:nth-child(2) {
+            min-width: 180px;
+            max-width: 180px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import '../../../style/index.scss';
+
+.text-2 {
+  color: $grey;
+  &--error {
+    color: $errorRed;
+  }
+}
+.textlink-2 {
+  text-transform: uppercase;
+  color: $blue;
+  padding-bottom: 0.5px;
+  border-bottom: 1px solid $lightPurple;
+  &.m-t {
+    margin-top: 6.7px;
+  }
+  &.m-b {
+    margin-bottom: 6.7px;
+  }
+}
+label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  border: 1px dashed $lightGrey;
+  box-sizing: border-box;
+  height: 113.25px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  &.label--loading {
+    align-items: center;
+    flex-direction: row;
+  }
+  &.label--active {
+    border-color: $green;
+  }
+}
+input {
+  display: none;
+}
+svg {
+  &.svg--default {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 26px;
+  }
+}
+span {
+  display: block;
+  margin-left: 74.79px;
+  &.progress-text {
+    color: $blue;
+    margin-left: 12.5px;
+  }
+}
+
+.files {
+  padding: 0 10px;
+  min-height: 60px;
+  h6:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

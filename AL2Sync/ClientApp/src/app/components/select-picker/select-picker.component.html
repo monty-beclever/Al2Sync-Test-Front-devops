@@ -1,0 +1,95 @@
+<div class="modal-backdrop" (click)="closePicker()"></div>
+<div class="selection">
+  <div class="selection-head">
+    <div class="d-flex justify-content-end align-items-start">
+      <button class="close-btn" (click)="closePicker()">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 22 22"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2.09668 2.1062L20.48 20.4895"
+            stroke="#D9D9D9"
+            stroke-width="2.8782"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M2.09668 20.4895L20.48 2.10616"
+            stroke="#D9D9D9"
+            stroke-width="2.8782"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="selection-title">Selecciona el usuario</div>
+    <!-- <div>
+      <svg width="54" height="54" xmlns="http://www.w3.org/2000/svg" fill="none" focusable="false" class="icon-card">
+         <path id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#3AC67F" d="m13.9642,41.5091c3.4814,-3.3837 8.192,-5.465 13.3642,-5.465c5.1211,0 9.7807,2.0391 13.2621,5.3607c-3.4814,3.3838 -8.192,5.4651 -13.3642,5.4651c-5.1211,0 -9.7807,-2.0391 -13.2621,-5.3608z" clip-rule="evenodd" fill-rule="evenodd"/>
+         <path id="svg_2" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#3AC67F" d="m9.47095,35.831c-1.35351,-2.6937 -2.16339,-5.7091 -2.16339,-8.9309c0,-11.0367 8.93314,-19.9698 19.96974,-19.9698c11.0367,0 19.9698,8.9331 19.9698,19.9698c0,3.2173 -0.8054,6.235 -2.1678,8.9265"/>
+         <path id="svg_3" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#3AC67F" d="m31.9842,17.7555c2.5995,2.5995 2.5995,6.8142 0,9.4138c-2.5996,2.5995 -6.8143,2.5995 -9.4139,0c-2.5995,-2.5996 -2.5995,-6.8143 0,-9.4138c2.5996,-2.5996 6.8143,-2.5996 9.4139,0"/>
+         <line stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="svg_4" y2="10.83052" x2="46.67661" y1="1.0448" x1="46.67661" stroke="#3AC67F" fill="white"/>
+         <line stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="svg_6" y2="5.7463" x2="51.66666" y1="5.7463" x1="41.66666" stroke="#3AC67F" fill="white"/>
+      </svg>
+    </div> -->
+  </div>
+  <div class="selection-btn">
+    <button
+      class="cta cta-secondary cta-text"
+      [disabled]="!selectedValue"
+      (click)="showAddUserForm = true"
+    >
+      Agregar Usuario
+    </button>
+  </div>
+  <div class="selection-wrapper">
+    <div class="selection-body">
+      <ng-container *ngIf="list && list.length">
+        <div
+          class="radio-container"
+          *ngFor="let itemObj of list; let i = index"
+        >
+          <label [for]="'opt' + i">
+            <span>
+              <input
+                [id]="'opt' + i"
+                class="checkbox"
+                name="selectVal"
+                type="checkbox"
+                (change)="addUser(itemObj)"
+                [value]="itemObj"
+              />
+              <span class="checkbox"></span>
+            </span>
+            <span class="text-2">
+              <span>{{ (itemObj.apellido ? itemObj.apellido : itemObj.lastName) + " " + (itemObj.nombre ? itemObj.nombre : itemObj.name) }}</span>
+              <span>{{ itemObj.cuit }}</span>
+            </span>
+          </label>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="selection-btn">
+    <button
+      class="cta cta-secondary cta-text"
+      [disabled]="!selectedValue"
+      (click)="confirm()"
+    >
+      confirmar
+    </button>
+  </div>
+</div>
+
+<div class="selection" *ngIf="showAddUserForm">
+  <app-new-users
+    [mode]="'addToCoop'"
+    [coopID]="0"
+    (returnUser)="addUser($event)"
+  ></app-new-users>
+</div>

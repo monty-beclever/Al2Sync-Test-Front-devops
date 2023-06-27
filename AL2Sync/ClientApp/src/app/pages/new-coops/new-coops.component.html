@@ -1,0 +1,174 @@
+<div class="container container-form">
+  <div class="row head">
+    <div class="col-6">
+      <a [routerLink]="['/cooperativas']">
+        <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.2788 7.20605L4.09981 16.7717L13.2788 26.3373" stroke="#524DC1" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+          <line x1="1" y1="-1" x2="23.2325" y2="-1" transform="matrix(1 0 0 -1 4.4646 15.4487)" stroke="#524DC1"
+            stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </a>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <button (click)="goBack()">
+        <svg focusable="false" width="25" height="25" viewBox="0 0 25 25" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.71753 6.4043L19.4917 19.1785" stroke="#898989" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M6.71753 19.1785L19.4917 6.40427" stroke="#898989" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    <div class="col-12">
+      <h1 class="headline-2">{{mode === 'edit' ? 'Editar' : 'Agregar'}} cooperativa</h1>
+    </div>
+  </div>
+  <div class="form-container">
+    <form action="" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="input-form input-search input-container">
+            <label>
+              <span class="eyebrow-input">cooperativa</span>
+              <div [ngClass]="sharedService.setInputSearchClasses(!coop.nombre)">
+                <input autocomplete="off" formControlName="nombre" type="text"
+                  placeholder="Buscá el nombre de la cooperativa" required>
+                <app-search-dropdown [inputText]="form.get('nombre').value" (inputTextChange)="coopSelected($event)"
+                  [searchList]="maeCoopNames"></app-search-dropdown>
+              </div>
+            </label>
+            <span *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.dirty" class="error-text text-2">La cooperativa
+              no fue encontrada</span>
+          </div>
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">cuit</span>
+              <input formControlName="cuit" type="text" placeholder="Ingresá la CUIT" required readonly>
+            </label>
+            <span *ngIf="form.get('cuit')?.invalid && form.get('cuit')?.dirty" class="error-text text-2">La CUIT
+              ingresada no es válida</span>
+          </div>
+          <div class="input-form input-toggle input-container">
+            <label>
+              <span class="eyebrow-input">Activo</span>
+              <input name="activo" type="checkbox" formControlName="activo">
+              <span class="toggle-btn"></span>
+            </label>
+          </div>
+          <div class="input-form input-file input-container">
+            <span class="eyebrow-input">Contrato</span>
+            <app-file inputFileName="coop-fileinput" (file)="getFile($event)" [reset]="resetFileInput"
+              [progress]="fileInputProgress" [status]="fileInputStatus" [files]="coop.contracts" [csvAllowed]="false"></app-file>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="input-form select-dropdown input-container">
+            <label>
+              <span class="eyebrow-input">provincia</span>
+              <input name="provincia" type="text" placeholder="Ingresá la provincia" formControlName="provincia"
+                required readonly>
+              <!-- <div class="select-container">
+                <select name="provincia" formControlName="provincia">
+                  <option value="" disabled selected>Seleccioná la provincia</option>
+                  <option *ngFor="let province of provinces" [ngValue]="province">
+                    {{province}}
+                  </option>
+                </select>
+              </div> -->
+            </label>
+          </div>
+          <div class="input-form input-search input-container">
+            <label>
+              <span class="eyebrow-input">localidad</span>
+              <input name="localidad" type="text" placeholder="Ingresá la localidad" formControlName="localidad"
+                required readonly>
+              <!-- <div class="input-search-container">
+                <input autocomplete="off" name="localidad" type="text" placeholder="Ingresá la localidad" formControlName="localidad" required>
+                <app-search-dropdown [(inputText)]="coop.localidad"
+                  [searchFilter]="coop.provincia"
+                  [searchList]="locations"></app-search-dropdown>
+              </div> -->
+            </label>
+            <!-- <span *ngIf="localidad.invalid && localidad.dirty" class="error-text text-2">Por favor ingresa una localidad válida</span> -->
+          </div>
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">teléfono</span>
+              <input name="telefono" type="tel" placeholder="Ingresá el teléfono" formControlName="telefono" required>
+            </label>
+            <span *ngIf="form.get('telefono').invalid && form.get('telefono').dirty" class="error-text text-2">Por favor
+              ingresa un telefono válido</span>
+          </div>
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">e-mail</span>
+              <input name="mail" type="email" placeholder="Ingresá el e-mail" formControlName="mail" required>
+            </label>
+            <span *ngIf="form.get('mail').invalid && form.get('mail').dirty" class="error-text text-2">Por favor
+              ingresa un email válido</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <!-- <div class="input-form select-dropdown input-container">
+            <label>
+              <span class="eyebrow-input">Cuenta Corriente</span>
+              <div class="select-container">
+                <select name="tipo" formControlName="tipo">
+                  <option value="" disabled selected>Seleccioná el tipo</option>
+                  <option *ngFor="let tipo of tipoOptions" [ngValue]="tipo.value">
+                    {{tipo.name}}
+                  </option>
+                </select>
+              </div>
+            </label>
+          </div> -->
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">Nro Cuenta</span>
+              <input name="cuentaCorriente" type="number" placeholder="Ingresá el numero de cuenta" formControlName="cuentaCorriente"
+                required readonly>
+            </label>
+            <span *ngIf="form.get('cuentaCorriente').invalid && form.get('cuentaCorriente').dirty" class="error-text text-2">Por favor ingresá un numero de cuenta valido</span>
+          </div>
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">Acuerdo crédito</span>
+              <input name="credit" type="number" placeholder="Ingresá el monto de crédito" formControlName="credit_amnt"
+                required>
+            </label>
+            <span *ngIf="form.get('credit_amnt').invalid && form.get('credit_amnt').dirty" class="error-text text-2">El acuerdo credito debe ser mayor a 0 y menor a {{maxCreditAmnt | currency}}</span>
+          </div>
+          <div class="input-form select-picker input-container">
+            <label>
+              <span class="eyebrow-input">usuarios</span>
+              <button type="button" class="textlink-2" (click)="toggleSelectPicker(true)">Agregar usuario</button>
+            </label>
+            <div class="result" *ngIf="coop.users">
+              <div *ngFor="let user of coop.users">
+                <hr>
+                <div class="text-2">{{user.user ? user.user : user.username}}</div>
+                <div class="text-2">{{user.cuit}}</div>
+                <!--<div class="text-2" *ngIf="!coop.user.info1">{{coop.user}}</div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 cta-container">
+        <button type="submit" class="cta cta-primary cta-text" [disabled]="form.invalid">guardar</button>
+        <button class="cta cta-secondary cta-text" (click)="goBack()">cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-container *ngIf="selectPickerActive">
+  <!-- <div class="modal-backdrop" (click)="toggleSelectPicker(false)"></div>
+  <div class="selection">
+    <app-new-users [mode]="'new'" [coopID]="0" (returnUser)="getSelection($event)"></app-new-users>
+  </div> -->
+  <app-select-picker [list]="users" [currentSelection]="coop.users" (close)="toggleSelectPicker(false)"
+    (success)="getSelection($event)"></app-select-picker>
+</ng-container>

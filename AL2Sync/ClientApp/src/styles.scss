@@ -1,0 +1,607 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$al2sync-primary: mat.define-palette(mat.$indigo-palette);
+$al2sync-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$al2sync-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$al2sync-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $al2sync-primary,
+      accent: $al2sync-accent,
+      warn: $al2sync-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($al2sync-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+@import "./style/index.scss";
+
+html,
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.container {
+  // border: 1px dotted red;
+  padding-left: 36px;
+  padding-right: 36px;
+  @include media-breakpoint-up(md) {
+    max-width: 1440px;
+  }
+  @include media-breakpoint-up(lg) {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  .row {
+    &.internal {
+      margin-top: 33px;
+      padding-bottom: 50px;
+    }
+    .col-12 {
+      &.welcome {
+        @media screen and (min-width: 993px) {
+          padding-left: 321.5px;
+        }
+      }
+    }
+
+    &.page {
+      max-width: 100vw;
+      .col-1 {
+        margin-right: 10px;
+        width: auto;
+        h1 {
+          font-size: 30px;
+          line-height: 35px;
+          font-family: spacegroteskMedium;
+          font-weight: 500;
+        }
+      }
+
+      .images {
+        display: flex;
+        button {
+          border: none;
+          outline: none;
+          background: transparent;
+          height: 35px;
+          svg {
+            width: 30px;
+            vertical-align: text-top;
+            max-height: 34px;
+          }
+        }
+      }
+      .search-container {
+        margin-top: 26px;
+        .input-container {
+          img {
+            position: relative;
+          }
+          input {
+            padding-left: 25px;
+            margin-left: -20px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  &.dashboard-head {
+    background-color: $deepBlue;
+    min-height: 174px;
+    .row {
+      .flex {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+  &.dashboard-footer {
+    background-color: $deepBlue;
+    min-height: 174px;
+    .row {
+      align-items: center;
+      min-height: 70px;
+      .flex {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+h2 {
+  font-family: spacegroteskMedium;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+h1 {
+  font-family: spacegrotesk;
+  font-size: 30px;
+  line-height: 35px;
+  @include media-breakpoint-up(lg) {
+    font-family: spacegroteskMedium;
+    font-size: 50px;
+    line-height: 50px;
+    margin-bottom: 51px;
+  }
+}
+
+input,
+select {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid $lightGrey;
+  padding-bottom: 10px;
+  margin-bottom: 48px;
+  padding-left: 0;
+  color: #000;
+  -webkit-appearance: none;
+  &::placeholder {
+    font-family: robotoregular;
+    color: $grey;
+    opacity: 1;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+  }
+
+  input:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px $white inset !important;
+  }
+}
+
+label {
+  font-family: robotoregular;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.105em;
+}
+
+.logo {
+  @include media-breakpoint-up(md) {
+    width: 54px;
+    height: 38px;
+  }
+}
+
+.logout {
+  @include media-breakpoint-up(md) {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Buttons */
+
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.secondary-button {
+  width: 100%;
+  height: 48px;
+  border-radius: 50px;
+  background: transparent;
+  border: 1px solid #524dc1;
+  color: #524dc1;
+}
+
+.add-button {
+  margin: 42px 0px;
+  button {
+    width: 100%;
+    height: 48px;
+    background: #524dc1;
+    border: none;
+    outline: none;
+    font-family: robotomedium;
+    font-size: 17px;
+    line-height: 35px;
+    color: #fff;
+    border-radius: 50px;
+  }
+}
+
+.extra-button {
+  margin: 0;
+}
+
+.table-buttons {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+
+    .extra-button {
+      margin: 20px;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    margin-top: 30px;
+  }
+}
+
+/* End of buttons */
+
+.cover {
+  background: #9d9d9d;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+  z-index: 9;
+}
+
+@media screen and (min-width: 768px) {
+  .add-button {
+    margin: 65px 0px;
+    width: 310px;
+  }
+  .extra-button {
+    margin: 0px 20px;
+    width: 310px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  h2 {
+    font-family: spacegroteskSemibold;
+    font-size: 50px;
+    line-height: 50px;
+  }
+
+  .search-container {
+    .input-container {
+      max-width: 540px;
+    }
+  }
+
+  .container {
+    .row {
+      &.page {
+        .col-1 {
+          h1 {
+            font-size: 50px;
+            line-height: 50px;
+            font-family: spacegroteskSemibold;
+            font-weight: 600;
+          }
+        }
+        .images {
+          button {
+            height: 55px;
+            svg {
+              width: auto;
+              vertical-align: text-top;
+              max-height: unset;
+            }
+          }
+        }
+        .search-container {
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+}
+
+/* Modals */
+.filtering,
+.sorting {
+  z-index: 99;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 288px;
+  background: #fff;
+  box-shadow: 0px 2px 3px rgba(82, 77, 193, 0.25),
+    0px 3px 15px rgba(82, 77, 193, 0.19);
+  border-radius: 15px;
+  padding: 25px 21px 35px 23.5px;
+  .modal-head {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 27px;
+    .right {
+      align-self: flex-end;
+    }
+    .left {
+      align-self: flex-start;
+      font-family: robotobold;
+      font-size: 20px;
+      line-height: 25px;
+      color: #000;
+    }
+  }
+  .custom-modal-body {
+    /* Sorting Modal */
+    .radio-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+      .isHidden {
+        display: none;
+      }
+
+      .label {
+        background: transparent;
+        font-size: 15px;
+        line-height: 27px;
+        font-family: robotoregular;
+        color: #000;
+      }
+
+      .hidden-check {
+        visibility: hidden;
+      }
+
+      .radio:checked + .hidden-check {
+        visibility: visible;
+      }
+    }
+
+    /* End of Sorting Modal */
+
+    /* Filter Modal */
+    .first-filter,
+    .second-filter {
+      padding-bottom: 22px;
+
+      .radio-options {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 14px;
+        div {
+          .isHidden {
+            display: none;
+          }
+          .label {
+            border: 2px solid #6ad7a0;
+            border-radius: 20px;
+            font-family: robotoregular;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 7px 23.5px;
+            text-align: center;
+            button {
+              display: none;
+            }
+          }
+          .radio:checked + .label {
+            background: #6ad7a0;
+            padding: 7px 6.5px;
+            button {
+              background: transparent;
+              border: none;
+              outline: none;
+              display: inline;
+              padding: 0px 5px 0px 15px;
+            }
+          }
+        }
+      }
+    }
+    .first-filter {
+    }
+    .second-filter {
+      .radio-options {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        div {
+          padding-bottom: 15px;
+          width: 100%;
+          input,
+          .label {
+            width: 100%;
+            text-align: center;
+          }
+          &:last-child {
+            padding-bottom: unset;
+          }
+        }
+      }
+    }
+
+    .option-filter {
+      select {
+        width: 100%;
+        margin-top: 10px;
+        -webkit-appearance: auto;
+      }
+    }
+
+    .mat-form-field {
+      font-family: robotoregular;
+      font-size: 14px;
+      line-height: 20px;
+
+      .mat-form-field-wrapper {
+        .mat-form-field-flex {
+          flex-direction: row-reverse;
+          padding: unset;
+          background: none;
+
+          .mat-form-field-infix {
+            padding: unset;
+
+            .mat-date-range-input {
+              color: #000;
+            }
+          }
+          .mat-form-field-suffix {
+            .mat-datepicker-toggle {
+              button.mat-icon-button {
+                justify-content: flex-start;
+                align-items: flex-end;
+                .mat-button-wrapper {
+                  mat-icon {
+                    vertical-align: super;
+                  }
+                }
+                &:focus {
+                  .mat-button-wrapper {
+                    mat-icon {
+                      svg {
+                        path {
+                          stroke: #524dc1;
+                        }
+                      }
+                    }
+                  }
+                }
+                span.mat-button-focus-overlay {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* End of Filter Modal */
+  }
+
+  .modal-button {
+    margin-top: 25px;
+    button {
+      height: 48px;
+      border: 1px solid #524dc1;
+      border-radius: 50px;
+      font-family: robotoregular;
+      font-size: 17px;
+      line-height: 35px;
+      color: #524dc1;
+      width: 100%;
+    }
+  }
+}
+
+.mat-datepicker-popup {
+  right: unset !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  .mat-datepicker-content {
+    border-radius: 15px;
+    .mat-calendar {
+      max-width: 288px;
+      .mat-calendar-header {
+        .mat-calendar-controls {
+          .mat-calendar-previous-button,
+          .mat-calendar-next-button {
+            color: #524dc1;
+          }
+        }
+      }
+      .mat-calendar-body-selected {
+        background-color: #6ad7a0;
+        color: #000;
+      }
+      .mat-calendar-body-in-range {
+        &::before {
+          color: #000;
+          background-color: #6ad7a0;
+        }
+        .mat-calendar-body-cell-content {
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sorting,
+  .filtering {
+    width: 411px;
+    padding: 40.5px 45px 44px 49px;
+    .modal-head {
+      margin-bottom: 33px;
+      .left {
+        font-size: 29px;
+        line-height: 36px;
+      }
+    }
+    .custom-modal-body {
+      .first-filter,
+      .second-filter {
+        .radio-options {
+          div {
+            .label {
+              min-width: 130px;
+              height: 34px;
+              padding: 6px 40.5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .filtering {
+    .custom-modal-body {
+      .first-filter,
+      .second-filter {
+        .radio-options {
+          div {
+            .radio:checked + .label {
+              background: #6ad7a0;
+              padding: 6px 22.5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* End of Modals */

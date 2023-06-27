@@ -1,0 +1,124 @@
+<div class="container container-form">
+  <div class="row head">
+    <div class="col-6">
+      <button (click)="goBack()">
+        <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.2788 7.20605L4.09981 16.7717L13.2788 26.3373" stroke="#524DC1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="1" y1="-1" x2="23.2325" y2="-1" transform="matrix(1 0 0 -1 4.4646 15.4487)" stroke="#524DC1" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <button (click)="goBack()">
+        <svg focusable="false" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.71753 6.4043L19.4917 19.1785" stroke="#898989" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6.71753 19.1785L19.4917 6.40427" stroke="#898989" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="col-12">
+      <h1 class="headline-2">{{mode === 'edit' ? 'Editar' : 'Agregar'}} usuario</h1>
+    </div>
+  </div>
+  <div class="form-container">
+    <form action="" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">usuario</span>
+              <input name="user" type="text" placeholder="Ingresá el usuario" formControlName="user">
+            </label>
+            <span *ngIf="form.get('user').invalid && form.get('user').dirty" class="error-text text-2">Por favor Ingresá el usuario</span>
+          </div>
+          <!-- <div class="input-form input-text input-container" *ngIf="mode === 'edit'">
+            <label>
+              <span class="eyebrow-input">contraseña</span>
+              <input name="password" type="password" placeholder="Ingresá la contraseña" formControlName="currentPassword" (keyup)="newPassword()">
+            </label>
+            <span *ngIf="form.get('currentPassword').invalid && form.get('currentPassword').dirty" class="error-text text-2">Por favor ingresa la contraseña</span>
+          </div> -->
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">{{mode === 'edit' ? 'contraseña nueva' : 'contraseña'}}</span>
+              <input name="password" type="password" placeholder="Ingresá la contraseña" formControlName="password">
+            </label>
+            <span *ngIf="form.get('password').invalid && form.get('password').dirty" class="error-text text-2">Por favor ingresa la contraseña</span>
+          </div>
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">repetir contraseña</span>
+              <input name="password" type="password" placeholder="Ingresá la contraseña" formControlName="repetePassword">
+            </label>
+            <span *ngIf="form.get('repetePassword').invalid && form.get('repetePassword').dirty" class="error-text text-2">La contraseñas no coinciden</span>
+          </div>
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">cuit</span>
+              <input name="cuit" type="text" placeholder="Ingresá la CUIT" formControlName="cuit">
+            </label>
+            <span *ngIf="form.get('cuit').invalid && form.get('cuit').dirty" class="error-text text-2">La CUIT ingresada no es válida</span>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">NOMBRE</span>
+              <input name="nombre" type="text" placeholder="Ingresá el nombre" formControlName="nombre">
+            </label>
+            <span *ngIf="form.get('nombre').invalid && form.get('nombre').dirty" class="error-text text-2">Por favor Ingresá un nombre</span>
+          </div>
+          <div class="input-form input-text input-container">
+            <label>
+              <span class="eyebrow-input">APELLIDO</span>
+              <input name="apellido" type="text" placeholder="Ingresá el apellido" formControlName="apellido">
+            </label>
+            <span *ngIf="form.get('apellido').invalid && form.get('apellido').dirty" class="error-text text-2">Por favor Ingresá un apellido</span>
+          </div>
+          <div class="input-form select-dropdown input-container">
+            <label>
+              <span class="eyebrow-input">cargo</span>
+              <div class="select-container">
+                <select name="cargo" formControlName="cargo">
+                  <option value="" disabled selected>Seleccioná el cargo</option>
+                  <option *ngFor="let cargoOpt of cargoOptions" [ngValue]="cargoOpt">
+                    {{cargoOpt}}
+                  </option>
+                </select>
+              </div>
+            </label>
+          </div>
+          <div class="input-form select-dropdown input-container">
+            <label>
+              <span class="eyebrow-input">Rol</span>
+              <div class="select-container">
+                <select name="cargo" formControlName="acceso">
+                  <option value="" disabled selected>Seleccioná el Rol</option>
+                  <option *ngFor="let roleOpt of roleOptions" [ngValue]="roleOpt.key">
+                    {{roleOpt.value}}
+                  </option>
+                </select>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" *ngIf="form.get('acceso').value != 'ROLE_WEBAL2ADMIN' && mode != 'addToCoop'">
+          <div class="input-form input-search input-container">
+            <label>
+              <span class="eyebrow-input">cooperativa</span>
+              <div [ngClass]="sharedService.setInputSearchClasses(form.get('cooperativa').value)">
+                <input autocomplete="off" name="cooperativa" type="text" placeholder="Buscá el nombre de la cooperativa" formControlName="cooperativa">
+                <app-search-dropdown [inputText]="form.get('cooperativa').value" (inputTextChange)="coopSelected($event)" [searchList]="coopSearchList"></app-search-dropdown>
+              </div>
+            </label>
+            <span *ngIf="form.get('cooperativa').invalid && form.get('cooperativa').dirty" class="error-text text-2">Buscá el nombre de la cooperativa</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 cta-container">
+        <button type="submit" class="cta cta-primary cta-text" [disabled]="form.invalid">guardar</button>
+        <button class="cta cta-secondary cta-text" (click)="goBack()">cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
